@@ -10,6 +10,8 @@ hw1 <- 170166719 %% 31079
 # hw2
 r <- 1.08
 nvals <- 1:100
+sum1 <- numeric(100)
+sum2 <- numeric(100)
 for (n in nvals) {
   sum1[n] <- sum(r^(1:n))
   sum2[n] <- (r^(n+1)-1)/(r-1)-1 #sum of x1....x_n==(x^(n+1)-1)/(x-1)-1  
@@ -54,7 +56,7 @@ for (n in n_test){
 
 # hw6
 #?rep
-hw6_1 <- rep(0:4, each=4)
+hw6_1 <- rep(0:4, each=5)
 hw6_1
 hw6_2 <- rep(1:5,5) # times
 hw6_2
@@ -132,7 +134,7 @@ hw14_harmo <- function(x,y) (2*x*y)/(x+y)
 
 # hw 15
 #?nchar
-hw15 <- function(x,y) if(nchar(x)>nchar(y)) x else y
+hw15 <- function(x,y) if(nchar(x)<nchar(y)) x else y
 #hw15("test", pi)
 #hw15("test", "test1")
 
@@ -196,3 +198,90 @@ hw20 <- function(x){
 #hw20(rep(10,10))
 
 #hw 21
+hw21 <-  function(x,y,z){
+  if (!is.numeric(x) || !is.numeric(y) || !is.numeric(z)) stop("each arg must be numeric")
+  sorted <- sort(c(x,y,z))
+  sorted[2]^2+sorted[3]^2
+}
+hw21(2,3,4)
+hw21(0,0,0)
+#hw21(c(2,3,4))
+#hw21(2,pi,"asd")
+
+# hw 22
+# assumiung inputs are valid
+# we have to write a helper because 0.333 is not stored cleanly in binary
+#   and because math libraries compute x^y as e^(y*ln(x))
+# since (-q/2 +- sqrt(D)) can be negative, (negative)^(1/3) is NaN
+hw22 <- function(a,b,c){
+  p <- (3*b-a^2)/3
+  q <- (2*a^3)/27 - (a*b)/3 +c
+  D <-  (p/3)^3 + (q/2)^2
+  if (D<0) stop("Discr is negative")
+  cuber <-  function(x) sign(x) * abs(x)^(1/3)
+  x <- -a/3 + cuber(-q/2+sqrt(D))+cuber(-q/2-sqrt(D))
+  x
+}
+hw22(1,1,1)
+hw22(0,0,-1)
+
+# hw 23
+# n should be a natural number or 0.
+# the function will return 0 for negative numbers (because anything * 0 is 0)
+#   which is correct for the RHS of the exercise, although n! for n<0 is undefined
+# (factorial overwrites builtin factorial)
+factorial <-function(n){
+  if(n==0) return(1)
+  prod(1:n)
+}
+# a)
+factorial(10)
+factorial(50)
+factorial(100)
+factorial(1000)
+
+# b)
+# \binom{n}{k} == \frac{n!}{k!(n-k)!}
+bico <- function(n,m){
+  factorial(n)/(factorial(m)*factorial(n-m))
+}
+bico(4,2)
+bico(50,20)
+bico(5000,2000)
+
+# c)
+# considering that \ln(\binom{n}{m}) can be computed by \ln(n!)-\ln(m!)-\ln((n-m)!)
+# since ln(n)=ln(1*2*3*...*n)=ln(1)+ln(2)...+ln(n)=sum(ln(1:10))
+bico_c <-  function(n,m){
+  exp(sum(log(1:n))-sum(log(1:m))-sum(log(1:(n-m))))
+}
+bico_c(4,2)
+bico_c(50,20)
+bico_c(5000,2000)
+
+# hw 24
+#straightforward implementation:
+#?gamma
+rho_n <-  function(n){
+  gamma((n-1)/2)/(gamma(1/2)*gamma((n-2)/2))
+}
+rho_n(2000)
+# this fails because gamma overflows to Inf as the gamma function == (n-1)!, which becomes very large for n=2000
+# using lgamma, we can use exp(lgamma()) ≈≈ gamma() by the definition of ln
+# all.equal(exp(lgamma(n)), gamma(n))==TRUE
+# by log transformations, ln(rho_n)=ln(gamma(X))-ln(gamma(Y))-ln(gamma(Z))
+rho_n_l<-function(n){
+  exp(lgamma((n-1)/2)-lgamma(1/2)-lgamma((n-2)/2))
+}
+
+all.equal(exp(lgamma(20)), gamma(20))
+all.equal(rho_n_l(50), rho_n(50))
+all.equal(rho_n_l(2000), rho_n(2000))
+rho_n_l(2000)
+
+# the limit of rho_n / sqrt(n)
+rho_n_l(10000)/sqrt(10000)
+curve(rho_n_l(x)/sqrt(x), from=0, to=1000)
+# it converges to a number around 0.3989, i.e. 1/sqrt(2pi)
+1/sqrt(2*pi)
+# this happens to be the max height of the standard normal density
