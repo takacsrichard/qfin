@@ -3,7 +3,7 @@
 # matrnr: 12313036
 # class 0210 
 setwd("~")
-
+# ------------------- HW 1 ----------------------- 
 # hw1
 hw1 <- 170166719 %% 31079
 
@@ -284,4 +284,69 @@ rho_n_l(10000)/sqrt(10000)
 curve(rho_n_l(x)/sqrt(x), from=0, to=1000)
 # it converges to a number around 0.3989, i.e. 1/sqrt(2pi)
 1/sqrt(2*pi)
-# this happens to be the max height of the standard normal density
+# this happens to be the max height of the standard normal density function
+
+
+# ------------------- HW 2 -----------------------
+
+# hw 25
+# assuming input is numeric and positive
+logstar <-function(x){
+  counter <- 0
+  x <- as.numeric(x)
+  while (x>=1){
+    x <- log(x)
+    counter <- counter+1
+  }
+  return(counter)
+}
+logstar(123)
+
+# hw 26
+# assuming gcd is undefined for rational numbers
+# todo check that link in pdf again
+gcd <- function(a,b){
+  if (a!= as.integer(a) || b!= as.integer(b)) stop("a and b must be integers") 
+  if (b==0) stop("b can't be 0")
+  if (a%%b==0) {return(b)}
+  else {
+    return(gcd(b,a%%b))
+  }
+}
+
+
+#hw 27
+hw27<- function(x){
+ tmp <- 1:x
+ rep(tmp%%2, times=tmp)
+}
+
+# hw 28
+#solution2: convert whole to logical vectors and sum()
+hw28 <- function(x){
+  tmp <- 0
+  for (i in x){
+    if(i%%2==1)
+      tmp <-  tmp+1
+  }
+  return(tmp)
+}
+
+# hw 29
+# if we cant use homework26, we can reimplement it accordingly
+hw29 <- function(x,y){
+  if(gcd(x,y)==1) return(TRUE) else return(FALSE)
+}
+
+#hw 30
+hw30 <- function(x){
+  if (x<=1 || x!=as.integer(x)) stop("negative, 0, 1, and non-whole numbers are not considered prime")
+  if (x==2) return(TRUE)
+  for(i in 2:(as.integer(sqrt(x))+1)){
+    if (x%%i==0) {
+      return(FALSE)}
+  }
+  return(TRUE)  
+}
+
+
