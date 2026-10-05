@@ -349,4 +349,18 @@ hw30 <- function(x){
   return(TRUE)  
 }
 
+# hw 31
+# using hw30
+hw31 <- function(){
+  cntp <-0
+  i <-2
+  while(cntp !=7){
+    if(hw30((2^i)-1)) {
+      cat((2^i)-1,"\n")
+      cntp <- cntp+1
+    }
+    i <- i+1
+  }
+}
 
+#hw 32
