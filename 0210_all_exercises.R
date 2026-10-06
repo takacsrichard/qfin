@@ -286,3 +286,157 @@ curve(rho_n_l(x)/sqrt(x), from=0, to=1000)
 1/sqrt(2*pi)
 # this happens to be the max height of the standard normal density function
 
+
+# ------------------- HW 2 -----------------------
+
+# hw 25
+# assuming input is numeric and positive
+logstar <-function(x){
+  counter <- 0
+  x <- as.numeric(x)
+  while (x>=1){
+    x <- log(x)
+    counter <- counter+1
+  }
+  return(counter)
+}
+logstar(123)
+
+# hw 26
+# assuming gcd is undefined for rational numbers
+# todo check that link in pdf again
+gcd <- function(a,b){
+  if (a!= as.integer(a) || b!= as.integer(b)) stop("a and b must be integers") 
+  if (b==0) stop("b can't be 0")
+  if (a%%b==0) {return(b)}
+  else {
+    return(gcd(b,a%%b))
+  }
+}
+
+
+#hw 27
+hw27<- function(x){
+ tmp <- 1:x
+ rep(tmp%%2, times=tmp)
+}
+
+# hw 28
+#solution2: convert whole to logical vectors and sum()
+hw28 <- function(x){
+  tmp <- 0
+  for (i in x){
+    if(i%%2==1)
+      tmp <-  tmp+1
+  }
+  return(tmp)
+}
+
+# hw 29
+# if we cant use homework26, we can reimplement it accordingly
+hw29 <- function(x,y){
+  if(gcd(x,y)==1) return(TRUE) else return(FALSE)
+}
+
+#hw 30
+hw30 <- function(x){
+  if (x<=1 || x!=as.integer(x)) stop("negative, 0, 1, and non-whole numbers are not considered prime")
+  if (x==2) return(TRUE)
+  for(i in 2:(as.integer(sqrt(x))+1)){
+    if (x%%i==0) {
+      return(FALSE)}
+  }
+  return(TRUE)  
+}
+
+# hw 31
+# using hw30
+hw31 <- function(){
+  cntp <-0
+  i <-2
+  while(cntp !=7){
+    if(hw30((2^i)-1)) {
+      cat((2^i)-1,"\n")
+      cntp <- cntp+1
+    }
+    i <- i+1
+  }
+}
+
+#hw 32
+hw32 <- function(x){
+  tmp <- 0
+  if(x==1) stop("1 is not considered a perfect number")
+  for(i in 1:(x-1)){
+    if(x%%i==0){
+      tmp = tmp +i
+    } 
+  }
+  ifelse(tmp==x, return(TRUE), return(FALSE)) 
+}
+cnt <- 0
+i <- 2
+while(cnt != 4){
+  if(hw32(i)) {
+    cat(i,"\n")
+    cnt= cnt+1}
+  i = i+1
+}
+rm(i, cnt)
+
+#hw33
+hw33 <- function(x){
+  if (x<=1) stop("function is only defined for positive integers that are larger than 1")
+  maxcnt <- 0
+  for (j in 1:x){
+    tmpcnt <- 0
+    for(i in 1:j){
+      if(j%%i==0){
+        tmpcnt=tmpcnt+1
+      } 
+    }
+    if(tmpcnt>maxcnt){
+      maxcnt = tmpcnt
+      if(j==x) return(TRUE)
+      }
+  }
+  return(FALSE)
+}
+
+# hw 34
+
+
+hw32 <- function(x){
+  crnt <- x
+  counter <- 0
+  if (x==1) return(TRUE)
+  while (crnt >1){
+  if (crnt%%2==1){
+    crnt <- (3*crnt+1)
+  }
+  else {
+    crnt <- crnt/2
+  }
+    counter=counter+1
+    if (crnt==1) return(counter)
+    # while it is known that the conjecture is true for any n between 1 and 100.000
+    # if it doesn't reach a cutoff point, we break
+    if(counter==1000000) return(FALSE)
+  }
+  
+}
+j <- 0
+maxlen <- 0
+maxlen_i <- 0
+for(i in 1:100000){
+  # if wo numbers have the same sequence length, take first one
+  x <- hw32(i)
+  if(x>maxlen){
+    maxlen=x
+    maxlen_i=i}
+  j = j+as.logical(x)
+}
+ifelse(j==100000, TRUE, FALSE) 
+maxlen_i
+# cleanup
+rm(maxlen, maxlen_i, j, i,x)
