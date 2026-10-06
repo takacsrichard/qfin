@@ -140,7 +140,7 @@ hw15 <- function(x,y) {
 }
 hw15("test", pi)
 hw15("test", "test1")
-h15("test", "test")
+hw15("test", "test")
 
 # Homework 16
 hw16 <-  function(x){
@@ -223,7 +223,7 @@ hw22 <- function(a,b,c){
   p <- (3*b-a^2)/3
   q <- (2*a^3)/27 - (a*b)/3 +c
   D <-  (p/3)^3 + (q/2)^2
-  if (D<0) stop("Discr is negative")
+  if (D<=0) stop("Discr is negative")
   cuber <-  function(x) sign(x) * abs(x)^(1/3)
   x <- -a/3 + cuber(-q/2+sqrt(D))+cuber(-q/2-sqrt(D))
   x
