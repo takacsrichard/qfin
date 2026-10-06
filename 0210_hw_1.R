@@ -364,3 +364,41 @@ hw31 <- function(){
 }
 
 #hw 32
+hw32 <- function(x){
+  tmp <- 0
+  if(x==1) stop("1 is not considered a perfect number")
+  for(i in 1:(x-1)){
+    if(x%%i==0){
+      tmp = tmp +i
+    } 
+  }
+  ifelse(tmp==x, return(TRUE), return(FALSE)) 
+}
+cnt <- 0
+i <- 2
+while(cnt != 4){
+  if(hw32(i)) {
+    cat(i,"\n")
+    cnt= cnt+1}
+  i = i+1
+}
+rm(i, cnt)
+
+#hw33
+hw33 <- function(x){
+  if (x<=1) stop("function is only defined for positive integers that are larger than 1")
+  maxcnt <- 0
+  for (j in 1:x){
+    tmpcnt <- 0
+    for(i in 1:j){
+      if(j%%i==0){
+        tmpcnt=tmpcnt+1
+      } 
+    }
+    if(tmpcnt>maxcnt){
+      maxcnt = tmpcnt
+      if(j==x) return(TRUE)
+      }
+  }
+  return(FALSE)
+}
