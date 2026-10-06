@@ -1,13 +1,13 @@
-# hw 1
+# homework 1
 # name: richard takacs
 # matrnr: 12313036
 # class 0210 
 setwd("~")
 # ------------------- HW 1 ----------------------- 
-# hw1
+# Homework1
 hw1 <- 170166719 %% 31079
 
-# hw2
+# Homework2
 r <- 1.08
 nvals <- 1:100
 sum1 <- numeric(100)
@@ -21,7 +21,7 @@ for (n in nvals) {
 sum_all_n <- (r^(nvals)-1)/(r-1)*r # sum of x1....x_n==(x^n-1)/(x-1)*x   
 all.equal(sum1,sum_all_n)
 
-# hw3
+# Homework3
 nvals <- 1:100
 for (n in c(100,200,400,800)){
   sum1 <- sum(1:n)
@@ -31,7 +31,7 @@ for (n in c(100,200,400,800)){
 sum_all_n <- nvals*(nvals+1)/2 
 sum_all_n
 
-# hw4
+# Homework4
 nvals <- 1:100
 for (n in c(200,400,600,800)){
   sum1 <- sum((1:n)^2)
@@ -41,7 +41,7 @@ for (n in c(200,400,600,800)){
 sum_all_n <- nvals*(nvals+1)*(2*nvals+1)/6
 sum_all_n
 
-# hw5
+# Homework5
 for (n in c(500,1000,2000,4000,8000)){
   sn <- sum(1/(1:n))
   cat("n=",n," sum: ",sn," logn: ", log(n), "ratio: ", sn/log(n), "diff: ", sn-log(n), "\n")
@@ -54,14 +54,14 @@ for (n in n_test){
   cat(n, ":", sn-log(n)," ")
 }
 
-# hw6
+# Homework6
 #?rep
 hw6_1 <- rep(0:4, each=5)
 hw6_1
 hw6_2 <- rep(1:5,5) # times
 hw6_2
 
-# hw7
+# Homework7
 hw7 <- lapply(1:5, function(i) i:(i+4))
 hw7 <- unlist(hw7)
 hw7
@@ -69,13 +69,13 @@ hw7
 hw7_2 <-  rep(seq(1:5), 5)+rep(0:4, each=5) #first part is 12345 5 times, second part is 000001111122222...
 hw7_2
 
-# hw8
+# Homework8
 hw8 <- function(n){
   rep(1:n, 1:n) #repeat 1:n for 1:n times
 }
 hw8(4)
 
-# hw 9
+# Homework 9
 numbers <-  c(3,5,8,10,12)
 "numbers" %in% ls()
 dump("numbers", file="numbers.R")
@@ -85,7 +85,7 @@ source("numbers.R")
 numbers
 # file.remove("~/numbers.R")
 
-# hw 10
+# Homework 10
 # r has LETTERS constant
 # alternatively LETTERS <- c("A", "B", "C", ... "Z")
 LETTERS
@@ -95,13 +95,13 @@ hw10 <-  function(path){ # from cwd
 # hw10("filename.R")
 # "filename.R" %in% list.files()
 
-# hw 11
+# Homework 11
 hw11 <- function(x){
   ifelse(x<=3, 3*x+2, 2*x-0.5*x^2)
 }
 plot(hw11, from=0, to=6, n=100)
 
-# hw 12
+# Homework 12
 hw12 <-  function(){
   n<-as.numeric(readline(prompt="enter number: "))
   ifelse(n>0, "positive", ifelse(n<0, "negative", "zero"))
@@ -111,7 +111,7 @@ hw12_1 <- function(x){
   ifelse(x>0, "positive", ifelse(x<0, "negative", "zero"))
 } 
 
-# hw 13
+# Homework 13
 hw13 <-  function(){
   cat("in this number bigger than pi in absolute value?")
   # if we do not care about builtin pi constant: 
@@ -126,19 +126,19 @@ hw13_1 <-  function(x){
 
 hw13_1(-pi+0.01)
 
-# hw 14
+# Homework 14
 hw14_geom <- function(x,y) sqrt(x*y)
 hw14_harmo <- function(x,y) (2*x*y)/(x+y)
 hw14_geom(10,5.5)
 hw14_harmo(10,5.5)
 
-# hw 15
+# Homework 15
 #?nchar
 hw15 <- function(x,y) if(nchar(x)<nchar(y)) x else y
 hw15("test", pi)
 hw15("test", "test1")
 
-# hw 16
+# Homework 16
 hw16 <-  function(x){
   y <- nchar(x) 
   if (y>0) {  
@@ -147,7 +147,7 @@ hw16 <-  function(x){
   }}}
 hw16(pi)
 
-# hw17
+# Homework 17
 hw17 <-  function(n){
   if (n != as.integer(n) || n<=0) stop("x must be natural number")
   cat(n:1, sep="\n")
@@ -155,7 +155,7 @@ hw17 <-  function(n){
 hw17(10)
 # hw17(pi) should error out
 
-# hw 18
+# Homework 18
 hw18 <- function(x,y){
   if (y==0) stop("y must be nonzero")
   if(x%%y==0){
@@ -169,7 +169,7 @@ hw18 <- function(x,y){
 hw18(5,2)
 hw18(pi, pi+0.000000000000000000001)
 
-# hw19
+# Homework 19
 hw19 <- function(x){
   if (x != as.integer(x) || x<=0) stop("x must be natural number")
   ch1 <- as.numeric(strsplit(as.character(x),"")[[1]])
@@ -186,7 +186,7 @@ hw19_1 <-  function(x){
   remainder
 }
 
-# hw 20
+# Homework 20
 hw20 <- function(x){
   if (any(x != as.integer(x) | x<=0)) stop("must be a seq of natural numbers")
   sum(nchar(as.character(x)))
@@ -199,7 +199,7 @@ hw20(c(2,3,4444))
 # hw20(0.001) should error out
 hw20(rep(10,10))
 
-# hw 21
+# Homework 21
 hw21 <-  function(x,y,z){
   if (!is.numeric(x) || !is.numeric(y) || !is.numeric(z)) stop("each arg must be numeric")
   sorted <- sort(c(x,y,z))
@@ -207,10 +207,10 @@ hw21 <-  function(x,y,z){
 }
 hw21(2,3,4)
 hw21(0,0,0)
-# hw21(c(2,3,4)) TODO???
-# hw21(2,pi,"asd") should error out
+# Homework21(c(2,3,4)) TODO???
+# Homework21(2,pi,"asd") should error out
 
-# hw 22
+# Homework 22
 # assumiung inputs are valid
 # we have to write a helper because 0.333 is not stored cleanly in binary
 #   and because math libraries compute x^y as e^(y*ln(x))
@@ -227,7 +227,7 @@ hw22 <- function(a,b,c){
 hw22(1,1,1)
 hw22(0,0,-1)
 
-# hw 23
+# Homework 23
 # n should be a natural number or 0.
 # the function will return 0 for negative numbers (because anything * 0 is 0)
 #   which is correct for the RHS of the exercise, although n! for n<0 is undefined
@@ -261,7 +261,7 @@ bico_c(4,2)
 bico_c(50,20)
 bico_c(5000,2000)
 
-# hw 24
+# Homework 24
 #straightforward implementation:
 #?gamma
 rho_n <-  function(n){
@@ -278,7 +278,7 @@ rho_n_l<-function(n){
 
 all.equal(exp(lgamma(20)), gamma(20))
 all.equal(rho_n_l(50), rho_n(50))
-all.equal(rho_n_l(2000), rho_n(2000))
+# all.equal(rho_n_l(2000), rho_n(2000)) should error out
 rho_n_l(2000)
 
 # the limit of rho_n / sqrt(n)
