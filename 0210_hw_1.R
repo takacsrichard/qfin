@@ -134,9 +134,13 @@ hw14_harmo(10,5.5)
 
 # Homework 15
 #?nchar
-hw15 <- function(x,y) if(nchar(x)<nchar(y)) x else y
+hw15 <- function(x,y) {
+   if(nchar(x)==nchar(y)) return("Ties")
+   else if(nchar(x)<nchar(y)) x else y
+}
 hw15("test", pi)
 hw15("test", "test1")
+h15("test", "test")
 
 # Homework 16
 hw16 <-  function(x){
@@ -192,7 +196,7 @@ hw20 <- function(x){
   sum(nchar(as.character(x)))
 }
 # hw20(pi) should error out
-# hw20(seq(0,10,by=2)) should error out TODO
+# hw20(seq(0,10,by=2)) should error out
 hw20(seq(1,12,by=2))
 hw20(c(2,3,4444))
 # hw20(-2) should error out  
@@ -207,8 +211,8 @@ hw21 <-  function(x,y,z){
 }
 hw21(2,3,4)
 hw21(0,0,0)
-# Homework21(c(2,3,4)) TODO???
-# Homework21(2,pi,"asd") should error out
+# hw21(c(2,3,4)) should error out because c() is one argument
+# hw21(2,pi,"asd") should error out
 
 # Homework 22
 # assumiung inputs are valid
@@ -249,7 +253,7 @@ bico <- function(n,m){
 }
 bico(4,2)
 bico(50,20)
-bico(5000,2000)
+bico(5000,2000) # exceeds double precision, so NaN
 
 # c)
 # considering that \ln(\binom{n}{m}) can be computed by \ln(n!)-\ln(m!)-\ln((n-m)!)
@@ -259,7 +263,7 @@ bico_c <-  function(n,m){
 }
 bico_c(4,2)
 bico_c(50,20)
-bico_c(5000,2000)
+bico_c(5000,2000) # exceeds doubles range as well, Inf.
 
 # Homework 24
 #straightforward implementation:
