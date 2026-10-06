@@ -402,3 +402,41 @@ hw33 <- function(x){
   }
   return(FALSE)
 }
+
+# hw 34
+
+
+hw32 <- function(x){
+  crnt <- x
+  counter <- 0
+  if (x==1) return(TRUE)
+  while (crnt >1){
+  if (crnt%%2==1){
+    crnt <- (3*crnt+1)
+  }
+  else {
+    crnt <- crnt/2
+  }
+    counter=counter+1
+    if (crnt==1) return(counter)
+    # while it is known that the conjecture is true for any n between 1 and 100.000
+    # if it doesn't reach a cutoff point, we break
+    if(counter==1000000) return(FALSE)
+  }
+  
+}
+j <- 0
+maxlen <- 0
+maxlen_i <- 0
+for(i in 1:100000){
+  # if wo numbers have the same sequence length, take first one
+  x <- hw32(i)
+  if(x>maxlen){
+    maxlen=x
+    maxlen_i=i}
+  j = j+as.logical(x)
+}
+ifelse(j==100000, TRUE, FALSE) 
+maxlen_i
+# cleanup
+rm(maxlen, maxlen_i, j, i,x)
