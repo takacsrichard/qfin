@@ -70,9 +70,6 @@ hw7_2 <-  rep(seq(1:5), 5)+rep(0:4, each=5) #first part is 12345 5 times, second
 hw7_2
 
 # hw8
-cat("input number. must be natural number")
-n <- as.integer(readline())
-
 hw8 <- function(n){
   rep(1:n, 1:n) #repeat 1:n for 1:n times
 }
@@ -88,7 +85,7 @@ source("numbers.R")
 numbers
 # file.remove("~/numbers.R")
 
-#hw 10
+# hw 10
 # r has LETTERS constant
 # alternatively LETTERS <- c("A", "B", "C", ... "Z")
 LETTERS
@@ -114,6 +111,7 @@ hw12_1 <- function(x){
   ifelse(x>0, "positive", ifelse(x<0, "negative", "zero"))
 } 
 
+# hw 13
 hw13 <-  function(){
   cat("in this number bigger than pi in absolute value?")
   # if we do not care about builtin pi constant: 
@@ -125,33 +123,37 @@ hw13 <-  function(){
 hw13_1 <-  function(x){
   abs(x)>pi
 }
-# hw13_1(-pi+0.01)
+
+hw13_1(-pi+0.01)
+
 # hw 14
 hw14_geom <- function(x,y) sqrt(x*y)
 hw14_harmo <- function(x,y) (2*x*y)/(x+y)
-# hw14_geom(10,5.5)
-# hw14_harmo(10,5.5)
+hw14_geom(10,5.5)
+hw14_harmo(10,5.5)
 
 # hw 15
 #?nchar
 hw15 <- function(x,y) if(nchar(x)<nchar(y)) x else y
-#hw15("test", pi)
-#hw15("test", "test1")
+hw15("test", pi)
+hw15("test", "test1")
 
 # hw 16
 hw16 <-  function(x){
-  for(i in 1:nchar(x)){
+  y <- nchar(x) 
+  if (y>0) {  
+    for(i in seq_len(y)){
     print(x)
-  }}
-#hw16(pi)
+  }}}
+hw16(pi)
 
 # hw17
 hw17 <-  function(n){
   if (n != as.integer(n) || n<=0) stop("x must be natural number")
   cat(n:1, sep="\n")
 }
-#hw17(10)
-#hw17(pi)
+hw17(10)
+hw17(pi)
 
 # hw 18
 hw18 <- function(x,y){
@@ -164,8 +166,8 @@ hw18 <- function(x,y){
   }
     
 }
-#hw18(5,2)
-#hw18(pi, pi+0.000000000000000000001)
+hw18(5,2)
+hw18(pi, pi+0.000000000000000000001)
 
 # hw19
 hw19 <- function(x){
@@ -189,15 +191,15 @@ hw20 <- function(x){
   if (any(x != as.integer(x) | x<=0)) stop("must be a seq of natural numbers")
   sum(nchar(as.character(x)))
 }
-#hw20(pi)
-#hw20(seq(0,10,by=2))
-#hw20(seq(1,12,by=2))
-#hw20(c(2,3,4444))
-#hw20(-2)
-#hw20(0.001)
-#hw20(rep(10,10))
+hw20(pi)
+hw20(seq(0,10,by=2))
+hw20(seq(1,12,by=2))
+hw20(c(2,3,4444))
+hw20(-2)
+hw20(0.001)
+hw20(rep(10,10))
 
-#hw 21
+# hw 21
 hw21 <-  function(x,y,z){
   if (!is.numeric(x) || !is.numeric(y) || !is.numeric(z)) stop("each arg must be numeric")
   sorted <- sort(c(x,y,z))
@@ -205,8 +207,8 @@ hw21 <-  function(x,y,z){
 }
 hw21(2,3,4)
 hw21(0,0,0)
-#hw21(c(2,3,4))
-#hw21(2,pi,"asd")
+hw21(c(2,3,4))
+hw21(2,pi,"asd")
 
 # hw 22
 # assumiung inputs are valid
