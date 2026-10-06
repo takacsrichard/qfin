@@ -153,7 +153,7 @@ hw17 <-  function(n){
   cat(n:1, sep="\n")
 }
 hw17(10)
-hw17(pi)
+# hw17(pi) should error out
 
 # hw 18
 hw18 <- function(x,y){
@@ -191,12 +191,12 @@ hw20 <- function(x){
   if (any(x != as.integer(x) | x<=0)) stop("must be a seq of natural numbers")
   sum(nchar(as.character(x)))
 }
-hw20(pi)
-hw20(seq(0,10,by=2))
+# hw20(pi) should error out
+# hw20(seq(0,10,by=2)) should error out TODO
 hw20(seq(1,12,by=2))
 hw20(c(2,3,4444))
-hw20(-2)
-hw20(0.001)
+# hw20(-2) should error out  
+# hw20(0.001) should error out
 hw20(rep(10,10))
 
 # hw 21
@@ -207,8 +207,8 @@ hw21 <-  function(x,y,z){
 }
 hw21(2,3,4)
 hw21(0,0,0)
-hw21(c(2,3,4))
-hw21(2,pi,"asd")
+# hw21(c(2,3,4)) TODO???
+# hw21(2,pi,"asd") should error out
 
 # hw 22
 # assumiung inputs are valid
