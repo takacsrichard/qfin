@@ -14,6 +14,27 @@ hw48l <- function(base, prec, emin, emax) base^(emax)*(1-base^(-prec))
 hw48s(2, 1, -1, 2)
 hw48l(2, 1, -1, 2)
 
+# hw 50
+x <- 1.23456
+y <- 1.23579
+diff <- y-x
+diff # 3 significant digits
+
+hw50 <- function(i){
+  # this would fail in many cases if x and y wouldn't be given in exercise. e.g. if x==y
+  # log(diff)=log(1.23)+log(10^-3). Second part is -3. The first part is always between 0 and 1, floor "fixes" the addition 
+  floor(log10(abs(i)))
+  }
+hw50(diff)
+
+#hw 51
+hw51l <- function() (2-2^-23)*2^127
+hw51l()
+hw51s <- function() 2^-126
+hw51s()
+hw51d <- function() 2^-149
+hw51d()
+
 # hw 53
 abs(3*(4/3-1)-1)
 .Machine$double.eps
@@ -39,6 +60,17 @@ hw55 <- function(){
 hw55()
 .Machine$double.eps
 .Machine$double.eps/2
+
+# hw 62
+# as an example, lets take the following x and y
+x <- 1e8 + 1
+y <- 1e8
+a <- x^2-y^2
+b <- (x+y)*(x-y)
+print(a, digits = 20)
+print(b, digits = 20)
+a == b
+
 # hw 63
 # classic example exploiting that large + small loses the small part, so the order of
 # operations changes the result
