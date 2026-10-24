@@ -2,6 +2,20 @@
 # richard takacs
 # matr.nr 12313036
 
+
+# hw 73
+hw73 <- function(j, x) {
+  integrate(function(theta) exp((1-theta)*x)*theta^(j-1), 0, 1)$value / factorial(j-1)
+}
+hw73_a <- function(j, x) {
+  (hw73(j-1, x)-hw73(j-1, 0))/x
+}
+hw73(2, 2)
+hw73_a(2, 2)
+hw73(2, 1e-20)
+hw73_a(2, 1e-20)
+# if x is too small, it rounds to zero (?)
+
 # hw 79
 # we get the largest n where the function(n)==function(n+1)
 hw79_n <- function(n) sum(1/10^(1:n))
@@ -71,6 +85,14 @@ hw81 <- sum(1/((4*k-3)*(4*k-1)))
 hw81
 pi/8
 
+#hw 82
+hw82 <- function(n) {
+  k <- 1:n
+  prod((2*k)^2/((2*k-1)*(2*k+1)))*2
+}
+hw82(10000)
+pi
+
 # hw 83
 hw83 <- sum(grepl(" ", state.name))
 hw83
@@ -95,7 +117,13 @@ hw87 <- sum(grepl("red", colors()))
 hw87
 
 # hw 88
-# TODO
+hw88<- function(file) {
+  chars <- unlist(strsplit(paste(readLines(file), collapse=""), ""))
+  tab <- table(chars)
+  names(tab)[which.max(tab)]
+}
+hw88("~/Downloads/todo.txt")
+hw88("http://statmath.wu.ac.at/~hornik/index.html")
 
 # hw 89
 wc <- function(file) {
@@ -114,6 +142,16 @@ hw90 <- function(file, word) {
 }
 hw90("package.json", "package")
 
+hw91 <- function(x) {
+  bin <- c()
+  while(x>0) {
+    bin <- c(x%%2, bin)
+    x <- x%/%2
+  }
+  paste(bin, collapse="")
+}
+hw91(6)
+
 # hw 92
 hw92 <- function(sub) {
   state <- sample(state.name, 1)
@@ -127,5 +165,17 @@ hw92("A")
 # hw 94
 #TODO
 
+
 # hw 97
-# TODO
+polyderiv <- function(beta) {
+  if(length(beta)<=1) return(0)
+  (1:(length(beta)-1))*beta[-1]
+}
+polyderiv(c(1, 2, 3))
+
+hw97 <- function(beta) {
+  p1 <- polyderiv(beta)
+  p2 <- polyderiv(p1)
+  polyroot(p2)
+}
+hw97(c(1,2,3))
